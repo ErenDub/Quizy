@@ -1,52 +1,46 @@
 import React, { useState, useEffect } from 'react'
-import SecondMap from './secondMap'
 import ThirdMap from './thirdMap'
 function FirstMap(props) {
   const [markCounter, setMarkCounter] = useState(0)
-  const [checking, setChecking] = useState(true)
-  const [showAnswers, setShowAnswers] = useState(true)
+  const [incMarkCounter, setIncMarkCounter] = useState(0)
   const [outputIndex, setOutputIndex] = useState(0)
   const [answearedCheck, setAnswearedCheck] = useState(
     props.array.questions[outputIndex].answeared,
   )
   useEffect(() => {
     markCounter === 0
-      ? props.setMarkSummer(0)
-      : props.setMarkSummer(props.markSummer + markCounter - (markCounter - 1))
+      ? props.setMarkSummer(props.markSummer)
+      : props.setMarkSummer(props.markSummer + 1)
   }, [markCounter])
+  useEffect(() => {
+    incMarkCounter === 0
+      ? props.setIncMarkSummer(props.incMarkSummer)
+      : props.setIncMarkSummer(props.incMarkSummer + 1)
+  }, [incMarkCounter])
   return (
     <div>
       <div className="topic">{props.array.topic}</div>
-      {/* {props.array.questions.map((e) => (
-        <SecondMap
-          array={e}
-          markCounter={markCounter}
-          setMarkCounter={setMarkCounter}
-        />
-      ))} */}
-
       <div>
         <div className="question">
           {props.array.questions[outputIndex].question}
         </div>
         <div className="answersFlex">
-          {showAnswers &&
-            props.array.questions[outputIndex].answers.map((e) => (
-              <ThirdMap
-                array={e}
-                markCounter={markCounter}
-                setMarkCounter={setMarkCounter}
-                answearedCheck={answearedCheck}
-                setAnswearedCheck={setAnswearedCheck}
-              />
-            ))}
+          {props.array.questions[outputIndex].answers.map((e) => (
+            <ThirdMap
+              array={e}
+              markCounter={markCounter}
+              setMarkCounter={setMarkCounter}
+              incMarkCounter={incMarkCounter}
+              setIncMarkCounter={setIncMarkCounter}
+              ans={props.array.questions[outputIndex]}
+            />
+          ))}
         </div>
       </div>
 
       {outputIndex > 0 ? (
         <button
           onClick={() => {
-            props.array.questions[outputIndex].answeared = false
             setOutputIndex(outputIndex - 1)
           }}
         >
@@ -58,7 +52,6 @@ function FirstMap(props) {
       {outputIndex < props.array.questions.length - 1 ? (
         <button
           onClick={() => {
-            props.array.questions[outputIndex].answeared = false
             setOutputIndex(outputIndex + 1)
           }}
         >
@@ -69,7 +62,7 @@ function FirstMap(props) {
       )}
 
       <div className="topicsum">
-        {props.array.topic} - {markCounter}
+        {props.array.topic} - სწორი: {markCounter} - არასწორი: {incMarkCounter}
       </div>
     </div>
   )

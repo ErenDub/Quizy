@@ -2,13 +2,17 @@ import React, { useState } from 'react'
 
 function ThirdMap(props) {
   const adding = () => {
-    props.answearedCheck &&
-      props.setMarkCounter(props.markCounter + props.array.correct)
+    props.ans.answeared &&
+      (props.array.correct == 1
+        ? props.setMarkCounter(props.markCounter + 1)
+        : props.setIncMarkCounter(props.incMarkCounter + 1))
+
+    props.ans.answeared = false
   }
   return (
     <div
       className={
-        props.answearedCheck
+        props.ans.answeared
           ? 'values'
           : props.array.correct === 1
           ? ' correctans'
