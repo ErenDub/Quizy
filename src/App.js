@@ -22,7 +22,7 @@ function App() {
         სულ სწორი: {markSummer} - სულ არასწორი: {incMarkSummer}
       </div>
 
-      {/* <button onClick={() => console.log(QuizyData)}>Array</button> */}
+      <button onClick={() => console.log(QuizyData)}>Array</button>
     </div>
   )
 }

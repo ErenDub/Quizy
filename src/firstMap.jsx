@@ -39,6 +39,7 @@ function FirstMap(props) {
               incMarkCounter={incMarkCounter}
               setIncMarkCounter={setIncMarkCounter}
               ans={props.array.questions[outputIndex]}
+              localAns={props.array.topic + outputIndex}
             />
           ))}
         </div>
