@@ -4,9 +4,11 @@ function FirstMap(props) {
   const [markCounter, setMarkCounter] = useState(0)
   const [incMarkCounter, setIncMarkCounter] = useState(0)
   const [outputIndex, setOutputIndex] = useState(0)
-  const [answearedCheck, setAnswearedCheck] = useState(
-    props.array.questions[outputIndex].answeared,
-  )
+  useEffect(() => {
+    localStorage.getItem(props.array.topic)
+      ? setOutputIndex(localStorage.getItem(props.array.topic))
+      : setOutputIndex(0)
+  }, 100)
   useEffect(() => {
     markCounter === 0
       ? props.setMarkSummer(props.markSummer)
@@ -17,6 +19,10 @@ function FirstMap(props) {
       ? props.setIncMarkSummer(props.incMarkSummer)
       : props.setIncMarkSummer(props.incMarkSummer + 1)
   }, [incMarkCounter])
+  // useEffect(() => {
+  //   localStorage.setItem(props.array.topic, outputIndex)
+  // }, [outputIndex])
+
   return (
     <div>
       <div className="topic">{props.array.topic}</div>
@@ -41,7 +47,10 @@ function FirstMap(props) {
       {outputIndex > 0 ? (
         <button
           onClick={() => {
-            setOutputIndex(outputIndex - 1)
+            setOutputIndex(parseInt(outputIndex) - 1)
+            let TMP = parseInt(outputIndex) - 1
+
+            localStorage.setItem(props.array.topic, TMP)
           }}
         >
           Back
@@ -52,7 +61,10 @@ function FirstMap(props) {
       {outputIndex < props.array.questions.length - 1 ? (
         <button
           onClick={() => {
-            setOutputIndex(outputIndex + 1)
+            setOutputIndex(parseInt(outputIndex) + 1)
+            let TMP = parseInt(outputIndex) + 1
+
+            localStorage.setItem(props.array.topic, TMP)
           }}
         >
           Next
