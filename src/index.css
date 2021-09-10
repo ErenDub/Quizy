@@ -26,23 +26,32 @@ code {
   margin-top: 10px;
 }
 .answersFlex {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: auto auto;
 }
 .values {
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px 30px 10px 30px;
 }
 .values:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .correctans {
   background-color: rgb(150, 255, 136);
-  padding: 5px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px 30px 10px 30px;
 }
 .incorrectans {
   background-color: rgb(255, 136, 107);
-  padding: 5px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px 30px 10px 30px;
 }
 .summer {
   font-weight: 600;
