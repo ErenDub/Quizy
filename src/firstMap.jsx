@@ -9,19 +9,29 @@ function FirstMap(props) {
       ? setOutputIndex(localStorage.getItem(props.array.topic))
       : setOutputIndex(0)
   }, 100)
-  useEffect(() => {
-    markCounter === 0
-      ? props.setMarkSummer(props.markSummer)
-      : props.setMarkSummer(props.markSummer + 1)
-  }, [markCounter])
-  useEffect(() => {
-    incMarkCounter === 0
-      ? props.setIncMarkSummer(props.incMarkSummer)
-      : props.setIncMarkSummer(props.incMarkSummer + 1)
-  }, [incMarkCounter])
+
   // useEffect(() => {
   //   localStorage.setItem(props.array.topic, outputIndex)
   // }, [outputIndex])
+  useEffect(() => {
+    localStorage.getItem(props.array.topic + 'cor') ||
+      localStorage.setItem(props.array.topic + 'cor', 0)
+  }, [])
+  useEffect(() => {
+    localStorage.getItem(props.array.topic + 'inc') ||
+      localStorage.setItem(props.array.topic + 'inc', 0)
+  }, [])
+  useEffect(() => {
+    setMarkCounter(parseInt(localStorage.getItem(props.array.topic + 'cor')))
+    setIncMarkCounter(parseInt(localStorage.getItem(props.array.topic + 'inc')))
+  }, [])
+
+  // useEffect(() => {
+  //   localStorage.setItem(props.array.topicc + 'cor', props.markCounter)
+  // }, [markCounter])
+  // useEffect(() => {
+  //   localStorage.setItem(props.array.topic + 'inc', props.incMarkCounter)
+  // }, [incMarkCounter])
 
   return (
     <div>
@@ -40,6 +50,7 @@ function FirstMap(props) {
               setIncMarkCounter={setIncMarkCounter}
               ans={props.array.questions[outputIndex]}
               localAns={props.array.topic + outputIndex}
+              topic={props.array.topic}
             />
           ))}
         </div>

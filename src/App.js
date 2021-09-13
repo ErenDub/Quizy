@@ -1,5 +1,5 @@
 import './App.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { QuizyData } from './data/quizyDatas'
 import FirstMap from './firstMap'
 
@@ -18,11 +18,11 @@ function App() {
           key={e.topic}
         />
       ))}
-      <div className="summer">
+      {/* <div className="summer">
         სულ სწორი: {markSummer} - სულ არასწორი: {incMarkSummer}
       </div>
 
-      <button onClick={() => console.log(QuizyData)}>Array</button>
+      <button onClick={() => console.log(QuizyData)}>Array</button> */}
     </div>
   )
 }
